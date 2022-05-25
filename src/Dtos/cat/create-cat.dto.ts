@@ -4,8 +4,8 @@ import { ObjectId } from "mongoose";
 import { CatsType } from "src/schemas";
 
 export enum Gender {
-    male = "male",
-    female = "female"
+    MALE = "male",
+    FEMALE = "female"
 }
 
 export class CreateCatRequestDto {

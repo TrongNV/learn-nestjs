@@ -6,6 +6,7 @@ import { AppService } from '../Services/app.service';
 import { CatsTypeModule } from './catstype/cats-type.module';
 import { CatsModule } from './cats/cats.module';
 import { FileModule } from './files/file.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { FileModule } from './files/file.module';
     MongooseModule.forRoot('mongodb://localhost/nest'),
     CatsModule,
     CatsTypeModule,
-    FileModule
+    FileModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
