@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsMongoId, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { ObjectId } from "mongoose";
 
 
 export class CreateUserRequestDto {
@@ -12,6 +13,37 @@ export class CreateUserRequestDto {
     @IsNotEmpty()
     @ApiProperty()
     password: string
+}
+
+export class UserAuthRequestDto {
+    
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty()
+    username: string
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty()
+    password: string
+}
+
+export class UserRequestDto {
+    @IsMongoId()
+    @IsOptional()
+    @ApiProperty()
+    _id: ObjectId
+    
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty()
+    username: string
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty()
+    token: string
 }
 
 export class UserResponeValidateDto{
