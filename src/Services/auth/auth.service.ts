@@ -14,7 +14,12 @@ export class AuthService {
     const user = await this.usersService.GetUserByUsername(username);
 
     if (user && user.password === pass) {
-      return user;
+      return {
+        _id: user._id,
+        username: user.username,
+        password: user.password,
+        role: user.role
+      };
     }
 
     return null;

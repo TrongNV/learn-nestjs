@@ -47,6 +47,10 @@ export class UserRequestDto {
 }
 
 export class UserResponeValidateDto{
+
+    @ApiProperty()
+    _id: ObjectId;
+
     @ApiProperty()
     username: string;
 
@@ -54,7 +58,7 @@ export class UserResponeValidateDto{
     password: string;
 
     @ApiProperty()
-    token: string;
+    role: string;
 }
 
 export class UserResponeDto{
