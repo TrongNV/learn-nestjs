@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 import mongoose from 'mongoose';
 import { JwtAuthGuard } from 'src/Guard/auth/jwt-auth.guard';
+import { LocalAuthGuard } from 'src/Guard/auth/local-auth.guard';
 import { AuthService } from 'src/Services/auth/auth.service';
 
 @Controller('auth')
@@ -17,15 +17,17 @@ export class AuthController {
     description: 'Login user successfully '
   })
 
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalAuthGuard)
   @Post('/login')
   async loginAuth(@Request() req): Promise<any> {
     return this.authService.login(req.user);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(LocalAuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
+    console.log(req.user);
+    
     return req.user;
   }
 }
