@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsMongoId, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { ObjectId } from "mongoose";
+import { Role } from "src/Decorator/roles.decorator";
 
 
 export class CreateUserRequestDto {
@@ -44,6 +45,11 @@ export class UserRequestDto {
     @IsNotEmpty()
     @ApiProperty()
     token: string
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty()
+    roles: Role[];
 }
 
 export class UserResponeValidateDto{
@@ -58,15 +64,34 @@ export class UserResponeValidateDto{
     password: string;
 
     @ApiProperty()
-    role: string;
+    roles: Role[];
+}
+
+export class UserResponeValidateLoginDto{
+
+    @ApiProperty()
+    _id: ObjectId;
+
+    @ApiProperty()
+    username: string;
+
+    @ApiProperty()
+    roles: Role[];
 }
 
 export class UserResponeDto{
+
+    @ApiProperty()
+    _id: ObjectId;
+
     @ApiProperty()
     username: string;
 
     @ApiProperty()
     token: string;
+
+    @ApiProperty()
+    roles: Role[];
 }
 
 export class UserLoginRequestDto{

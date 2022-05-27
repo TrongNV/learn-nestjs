@@ -1,11 +1,12 @@
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 import mongoose from 'mongoose';
+import { Public } from 'src/Decorator/public.decorator';
 import { JwtAuthGuard } from 'src/Guard/auth/jwt-auth.guard';
 import { LocalAuthGuard } from 'src/Guard/auth/local-auth.guard';
 import { AuthService } from 'src/Services/auth/auth.service';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(private authService: AuthService) { }
 
@@ -18,15 +19,15 @@ export class AuthController {
   })
 
   @UseGuards(LocalAuthGuard)
-  @Post('/login')
+  @Public()
+  @Post('auth/login')
   async loginAuth(@Request() req): Promise<any> {
     return this.authService.login(req.user);
   }
 
-  @UseGuards(LocalAuthGuard)
   @Get('profile')
+  @UseGuards(JwtAuthGuard)
   getProfile(@Request() req) {
-    console.log(req.user);
     
     return req.user;
   }

@@ -3,10 +3,13 @@ import { AuthGuard } from "@nestjs/passport";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
+import { Role, Roles } from "src/Decorator/roles.decorator";
 import { CatResponeDto, CreateCatRequestDto, DeletedCatReponseDto, GetCatByIdParamsRequestDto, GetCatsTypeIdParamsRequestDto, UpdateCatRequestDto, UploadImageCatReponseDto } from "src/Dtos";
+import { JwtAuthGuard } from "src/Guard/auth/jwt-auth.guard";
 import { CatService } from "src/Services/cats/cat.service";
 
 @Controller('cats')
+@UseGuards(JwtAuthGuard)
 export class CatController {
     constructor(private readonly catService: CatService) { }
 
@@ -18,6 +21,7 @@ export class CatController {
         description: 'Get cats successfully '
     })
     @Get()
+    @Roles(Role.Admin)
     async getCats(): Promise<CatResponeDto[]> {
         return this.catService.getCats();
     }

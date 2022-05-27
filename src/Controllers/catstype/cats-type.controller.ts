@@ -1,6 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { Public } from 'src/Decorator/public.decorator';
+import { Role, Roles } from 'src/Decorator/roles.decorator';
 import { GetCatsTypeIdParamsRequestDto, UpdateCatsTypeRequestDto, CatsTypeResponeDto, CreateCatsTypeRequestDto, DeletedCatsTypeIdParamsRequestDto, CatResponeDto } from 'src/Dtos';
+import { JwtAuthGuard } from 'src/Guard/auth/jwt-auth.guard';
 import { CatsTypeService } from 'src/Services/catstype/cats-type.service';
 
 @Controller('catstype')
@@ -16,6 +19,8 @@ export class CatsTypeController {
     description: 'Get all catstype successfully '
   })
   @Get()
+  @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard)
   async getAllCatsType(): Promise<CatsTypeResponeDto[]> {
     return this.catsTypeService.getAllCatsType();
   }
