@@ -7,11 +7,11 @@ import { CatsTypeModule } from './catstype/cats-type.module';
 import { CatsModule } from './cats/cats.module';
 import { FileModule } from './files/file.module';
 import { AuthModule } from './auth/auth.module';
-import { LocalStrategy } from 'src/Strategy/auth/local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from 'src/Guard/auth/jwt-auth.guard';
 import { UsersModule } from './users/users.module';
+import { SendgirdMailModule } from './sendgrid/sendgrid.module';
 
 @Module({
   imports: [
@@ -24,7 +24,8 @@ import { UsersModule } from './users/users.module';
     CatsTypeModule,
     FileModule,
     AuthModule,
-    UsersModule
+    UsersModule,
+    SendgirdMailModule
   ],
   controllers: [AppController],
   providers: [AppService, 
