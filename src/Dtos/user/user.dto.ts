@@ -19,6 +19,12 @@ export class UserResponseSuccecssDto {
     @ApiProperty()
     isSuccess: boolean
 }
+
+export class UserResponseTokenDto {
+    @ApiProperty()
+    access_token: string
+}
+
 export class UserAuthRequestDto {
     
 
