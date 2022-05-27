@@ -11,8 +11,7 @@ import { LocalStrategy } from 'src/Strategy/auth/local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from 'src/Guard/auth/jwt-auth.guard';
-import { JwtStrategy } from 'src/Strategy/auth/jwt.strategy';
-import { LocalAuthGuard } from 'src/Guard/auth/local-auth.guard';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -24,7 +23,8 @@ import { LocalAuthGuard } from 'src/Guard/auth/local-auth.guard';
     CatsModule,
     CatsTypeModule,
     FileModule,
-    AuthModule
+    AuthModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService, 

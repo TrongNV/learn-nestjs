@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsMongoId, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsMongoId, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { ObjectId } from "mongoose";
 import { Role } from "src/Decorator/roles.decorator";
 
@@ -15,7 +15,10 @@ export class CreateUserRequestDto {
     @ApiProperty()
     password: string
 }
-
+export class UserResponseSuccecssDto {
+    @ApiProperty()
+    isSuccess: boolean
+}
 export class UserAuthRequestDto {
     
 
