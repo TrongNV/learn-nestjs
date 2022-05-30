@@ -8,3 +8,7 @@ export class EmailRequestDto {
     email: string;
 }
 
+export class EmailResponsetDto {
+    @ApiProperty()
+    isSuccess: boolean;
+}
