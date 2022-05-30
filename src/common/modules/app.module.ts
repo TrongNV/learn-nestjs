@@ -11,7 +11,8 @@ import { PassportModule } from '@nestjs/passport';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UsersModule } from './users/users.module';
-import { SendgirdMailModule } from './sendgrid/sendgrid.module';
+import { SendgirdMailModule } from './mail/mail.module';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
@@ -19,6 +20,13 @@ import { SendgirdMailModule } from './sendgrid/sendgrid.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot('mongodb://localhost/nest'),
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379,
+      }
+    }),
+    SendgirdMailModule,
     PassportModule,
     CatsModule,
     CatsTypeModule,
