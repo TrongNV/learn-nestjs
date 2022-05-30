@@ -13,6 +13,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UsersModule } from './users/users.module';
 import { SendgirdMailModule } from './mail/mail.module';
 import { BullModule } from '@nestjs/bull';
+import { CaslModule } from './casl/casl.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { BullModule } from '@nestjs/bull';
     FileModule,
     AuthModule,
     UsersModule,
-    SendgirdMailModule
+    SendgirdMailModule,
+    CaslModule
   ],
   controllers: [AppController],
   providers: [AppService, 
