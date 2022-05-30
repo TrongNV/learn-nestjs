@@ -19,7 +19,7 @@ export class SendgirdMailController {
     @Post('send-email')
     async sendEmail(@Body() body: EmailRequestDto): Promise<EmailResponsetDto> {
         try{
-            const result = await this.sendgridService.sendMailQueue(body.email);
+            await this.sendgridService.sendMailQueue(body.email);
         }
         catch(e){
             return {
