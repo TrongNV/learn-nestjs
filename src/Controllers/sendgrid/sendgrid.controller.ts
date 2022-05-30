@@ -17,10 +17,10 @@ export class SendgirdMailController {
     })
     @Public()
     @Post('send-email')
-    async sendEmail(@Body('email') email: EmailRequestDto): Promise<EmailResponsetDto> {
+    async sendEmail(@Body() body: EmailRequestDto): Promise<EmailResponsetDto> {
         
         const mail = {
-            to: email,
+            to: body.email,
             subject: 'Hello from sendgrid',
             from: {
                 name: 'Demo Email sendgrid',
