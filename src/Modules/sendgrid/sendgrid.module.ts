@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { SendgirdMailController } from 'src/Controllers/sendgrid/sendgrid.service';
+import { SendgirdMailController } from 'src/Controllers/sendgrid/sendgrid.controller';
 import { SendgirdMailService } from 'src/Services/sendgrid/sendgrid.service';
 
 @Module({
