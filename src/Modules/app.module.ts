@@ -7,6 +7,12 @@ import { CatsTypeModule } from './catstype/cats-type.module';
 import { CatsModule } from './cats/cats.module';
 import { FileModule } from './files/file.module';
 import { AuthModule } from './auth/auth.module';
+import { LocalStrategy } from 'src/Strategy/auth/local.strategy';
+import { PassportModule } from '@nestjs/passport';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from 'src/Guard/auth/jwt-auth.guard';
+import { JwtStrategy } from 'src/Strategy/auth/jwt.strategy';
+import { LocalAuthGuard } from 'src/Guard/auth/local-auth.guard';
 
 @Module({
   imports: [
@@ -14,12 +20,18 @@ import { AuthModule } from './auth/auth.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot('mongodb://localhost/nest'),
+    PassportModule,
     CatsModule,
     CatsTypeModule,
     FileModule,
     AuthModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, 
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    }
+  ],
 })
 export class AppModule {}

@@ -20,6 +20,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         HttpStatus.UNAUTHORIZED
       );
     }
+    
     return user;
   }
 }
