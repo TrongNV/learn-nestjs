@@ -1,7 +1,7 @@
-import { Controller, Post, Query } from '@nestjs/common';
+import { Body, Controller, Post, Query } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 import { Public } from 'src/Decorator/public.decorator';
-import { EmailRequestDto } from 'src/Dtos/email/email.dto';
+import { EmailRequestDto, EmailResponsetDto } from 'src/Dtos/email/email.dto';
 import { SendgirdMailService } from 'src/Services/sendgrid/sendgrid.service';
 
 @Controller('email')
@@ -12,12 +12,13 @@ export class SendgirdMailController {
         summary: 'Send email'
     })
     @ApiCreatedResponse({
-        type: EmailRequestDto,
+        type: EmailResponsetDto,
         description: 'Send email successfully '
     })
     @Public()
     @Post('send-email')
-    async sendEmail(@Query('email') email: EmailRequestDto) {
+    async sendEmail(@Body('email') email: EmailRequestDto): Promise<EmailResponsetDto> {
+        
         const mail = {
             to: email,
             subject: 'Hello from sendgrid',
@@ -33,11 +34,11 @@ export class SendgirdMailController {
         }
         catch(e){
             return {
-                isSucces: false
+                isSuccess: false
             }
         }
         return {
-            isSucces: true
+            isSuccess: true
         }
     }
 }
