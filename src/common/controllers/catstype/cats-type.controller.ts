@@ -1,10 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Role, Roles } from 'src/common/decorator/roles.decorator';
 import { GetCatsTypeIdParamsRequestDto, UpdateCatsTypeRequestDto, CatsTypeResponeDto, CreateCatsTypeRequestDto, DeletedCatsTypeIdParamsRequestDto, CatResponeDto } from 'src/common/dtos';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CatsTypeService } from 'src/common/services/catstype/cats-type.service';
 
+@ApiTags('catstype')
+@ApiBearerAuth()
 @Controller('catstype')
 export class CatsTypeController {
   constructor(private readonly catsTypeService: CatsTypeService) { }

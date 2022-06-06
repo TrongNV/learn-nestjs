@@ -13,6 +13,6 @@ export type PolicyHandler = IPolicyHandler | PolicyHandlerCallback;
 
 export class ReadArticlePolicyHandler implements IPolicyHandler {
   handle(ability: AppAbility) {
-    return ability.can(Action.Read, new Article);
+    return ability.can(Action.Read, Article);
   }
 }
