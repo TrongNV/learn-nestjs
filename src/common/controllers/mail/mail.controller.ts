@@ -1,9 +1,11 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/common/decorator/public.decorator';
 import { EmailRequestDto, EmailResponsetDto } from 'src/common/dtos/email/email.dto';
 import { SendgirdMailService } from 'src/common/services/mail/mail.service';
 
+@ApiTags('email')
+@ApiBearerAuth()
 @Controller('email')
 export class SendgirdMailController {
     constructor(private readonly sendgridService: SendgirdMailService) { }

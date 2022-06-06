@@ -1,22 +1,24 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Query, Res, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
-import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
 import { Role, Roles } from "src/common/decorator/roles.decorator";
 import { CatResponeDto, CreateCatRequestDto, DeletedCatReponseDto, GetCatByIdParamsRequestDto, GetCatsTypeIdParamsRequestDto, UpdateCatRequestDto, UploadImageCatReponseDto } from "src/common/dtos";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { CatService } from "src/common/services/cats/cat.service";
 
+@ApiTags('cats')
+@ApiBearerAuth()
 @Controller('cats')
 @UseGuards(JwtAuthGuard)
 export class CatController {
     constructor(private readonly catService: CatService) { }
-
+    
     @ApiOperation({
         summary: 'Get cats'
     })
     @ApiOkResponse({
         type: [CatResponeDto],
-        description: 'Get cats successfully '
+        description: 'Get cats successfully'
     })
     @Get()
     @Roles(Role.Admin)

@@ -1,6 +1,7 @@
 import { Ability, AbilityBuilder, AbilityClass, ExtractSubjectType, InferSubjects } from "@casl/ability";
 import { Injectable } from "@nestjs/common";
 import { Action } from "src/common/constants/constants";
+import { Article } from "src/common/model/article/article.model";
 import { UserModel } from "src/common/model/user/user.model";
 
 type Subjects = InferSubjects<typeof Article | typeof UserModel> | 'all';

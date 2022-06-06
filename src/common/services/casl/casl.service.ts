@@ -5,7 +5,7 @@ import { Article } from 'src/common/model/article/article.model';
 import { UserModel } from 'src/common/model/user/user.model';
 
 @Injectable()
-export class Service {
+export class CaslService {
     constructor(private caslAbilityFactory: CaslAbilityFactory) {
         const user = new UserModel();
         user.isAdmin = false;

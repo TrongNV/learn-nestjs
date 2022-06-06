@@ -1,9 +1,11 @@
 import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ImagesResponeDto } from 'src/common/dtos/file/file.dto';
 import { FileService } from 'src/common/services/files/file.service';
 
+@ApiTags('images')
+@ApiBearerAuth()
 @Controller('images')
 export class FileController {
   constructor(private readonly fileService: FileService) { }
