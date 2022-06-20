@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sockets test</title>
+    <style>
+      .btn {
+        width: 200px;
+        height: 200px;
+      }
+      .btn.btn-primary {
+        background-color: aqua;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>stripe</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div style="display: flex; justify-content: center">
+            <form action="" id="form-stripe">
+              <button class="btn btn-primary" type="submit">
+                submit stripe
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $('#form-stripe').submit((e) => {
+        e.preventDefault();
+        $.ajax({
+          headers: {
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ndXllbnZhbnRyb25nIiwiX2lkIjoiNjI5ZWJjYjljYjNmZDI1ZDQyZDgwZjM4Iiwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNjU1MzU0OTY3LCJleHAiOjE2NTU5NTk3Njd9.IemH23JwQGUCJ34XaLUElIaUG2sNhtuPjgDZ1b35PE0',
+          },
+          url: '/stripe/customer'
+        }).then(res=>{
+          console.log(res.client_secret)
+        });
+      });
+    </script>
+  </body>
+</html>
