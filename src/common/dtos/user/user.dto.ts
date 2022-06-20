@@ -1,116 +1,145 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsMongoId, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { ObjectId } from "mongoose";
-import { Role } from "src/common/decorator/roles.decorator";
-
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsBoolean,
+  IsMongoId,
+  IsNotEmpty,
+  IsOptional,
+  isString,
+  IsString,
+} from 'class-validator';
+import { ObjectId } from 'mongoose';
+import { Role } from 'src/common/decorator/roles.decorator';
 
 export class CreateUserRequestDto {
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    username: string
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  username: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    password: string
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  password: string;
 }
 export class UserResponseSuccecssDto {
-    @ApiProperty()
-    isSuccess: boolean
+  @ApiProperty()
+  isSuccess: boolean;
 }
 
 export class UserResponseTokenDto {
-    @ApiProperty()
-    access_token: string
+  @ApiProperty()
+  access_token: string;
 }
 
 export class UserAuthRequestDto {
-    
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  username: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    username: string
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  password: string;
+}
 
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    password: string
+export class UpdateUserRequestDto {
+  @IsString()
+  @IsOptional()
+  username?: string;
+
+  @IsString()
+  @IsOptional()
+  email?: string;
+
+  @IsString()
+  @IsOptional()
+  customerId?: string;
+
+  @IsString()
+  @IsOptional()
+  subId?: string;
 }
 
 export class UserRequestDto {
-    @IsMongoId()
-    @IsOptional()
-    @ApiProperty()
-    _id: ObjectId
-    
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    username: string
+  @IsMongoId()
+  @IsOptional()
+  @ApiProperty()
+  _id: ObjectId;
 
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    token: string
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  username: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    roles: Role[];
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  token: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  roles: Role[];
 }
 
-export class UserResponeValidateDto{
-
-    @ApiProperty()
-    _id: ObjectId;
-
-    @ApiProperty()
-    username: string;
-
-    @ApiProperty()
-    password: string;
-
-    @ApiProperty()
-    roles: Role[];
+export class GetUserByUsernameParamsRequestDto {
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  username: string;
 }
 
-export class UserResponeValidateLoginDto{
+export class UserResponeValidateDto {
+  @ApiProperty()
+  _id: ObjectId;
 
-    @ApiProperty()
-    _id: ObjectId;
+  @ApiProperty()
+  username: string;
 
-    @ApiProperty()
-    username: string;
+  @ApiProperty()
+  email?: string;
 
-    @ApiProperty()
-    roles: Role[];
+  @ApiProperty()
+  password: string;
+
+  @ApiProperty()
+  roles: Role[];
 }
 
-export class UserResponeDto{
+export class UserResponeValidateLoginDto {
+  @ApiProperty()
+  _id: ObjectId;
 
-    @ApiProperty()
-    _id: ObjectId;
+  @ApiProperty()
+  username: string;
 
-    @ApiProperty()
-    username: string;
-
-    @ApiProperty()
-    token: string;
-
-    @ApiProperty()
-    roles: Role[];
+  @ApiProperty()
+  roles: Role[];
 }
 
-export class UserLoginRequestDto{
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    username: string;
+export class UserResponeDto {
+  @ApiProperty()
+  _id: ObjectId;
 
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    password: string;
+  @ApiProperty()
+  username: string;
+
+  @ApiProperty()
+  token: string;
+
+  @ApiProperty()
+  roles: Role[];
+}
+
+export class UserLoginRequestDto {
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  username: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  password: string;
 }

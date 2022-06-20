@@ -26,10 +26,13 @@
     "@nestjs/config": "^2.0.1",
     "@nestjs/core": "^8.1.1",
     "@nestjs/jwt": "^8.0.1",
+    "@nestjs/mapped-types": "*",
     "@nestjs/mongoose": "^9.1.0",
     "@nestjs/passport": "^8.2.1",
     "@nestjs/platform-express": "^8.1.1",
+    "@nestjs/platform-socket.io": "^8.4.6",
     "@nestjs/swagger": "^5.2.1",
+    "@nestjs/websockets": "^8.4.6",
     "@sendgrid/mail": "^7.7.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
@@ -48,6 +51,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.4.0",
     "sharp": "^0.30.5",
+    "socket.io": "^4.5.1",
+    "stripe": "^9.8.0",
     "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {

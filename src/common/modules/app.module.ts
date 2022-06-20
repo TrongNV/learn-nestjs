@@ -14,6 +14,8 @@ import { UsersModule } from './users/users.module';
 import { SendgirdMailModule } from './mail/mail.module';
 import { BullModule } from '@nestjs/bull';
 import { CaslModule } from './casl/casl.module';
+import { MessageModule } from 'src/message/message.module';
+import { StripeModule } from './stripe/stripe.module';
 
 @Module({
   imports: [
@@ -27,6 +29,7 @@ import { CaslModule } from './casl/casl.module';
         port: 6379,
       }
     }),
+    MessageModule,
     SendgirdMailModule,
     PassportModule,
     CatsModule,
@@ -34,8 +37,8 @@ import { CaslModule } from './casl/casl.module';
     FileModule,
     AuthModule,
     UsersModule,
-    SendgirdMailModule,
-    CaslModule
+    CaslModule,
+    StripeModule
   ],
   controllers: [AppController],
   providers: [AppService, 
