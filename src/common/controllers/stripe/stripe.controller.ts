@@ -40,6 +40,11 @@ export class StripeController {
     return this.stripeService.createProduct(body.product);
   }
 
+  @Get('product')
+  async getListProduct():Promise<Stripe.ApiListPromise<Stripe.Product>> {
+    return this.stripeService.getListProduct();
+  }
+
   @Delete('subscription')
   async deleteSubscription(
     @Body() body,
