@@ -71,7 +71,21 @@ export class StripeService {
         images: [product.image],
         description: product.description,
       });
-      return this.createPrice(product, productPayment.id);
+      const price = await this.createPrice(product, productPayment.id);
+
+      await this.stripe.products.update(productPayment.id, {
+        default_price: price.id,
+      });
+
+      return price;
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async getListProduct(): Promise<Stripe.ApiListPromise<Stripe.Product>> {
+    try {
+      return this.stripe.products.list();
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
     }
@@ -207,13 +221,11 @@ export class StripeService {
         customer: user.customerId,
       });
 
-
       // set default payment method
-      const customers = await this.stripe.customers.retrieve(
-        user.customerId
-      );
-      const checkDefaultPaymentMethod = customers['invoice_settings']['default_payment_method'];
-      if(!checkDefaultPaymentMethod){
+      const customers = await this.stripe.customers.retrieve(user.customerId);
+      const checkDefaultPaymentMethod =
+        customers['invoice_settings']['default_payment_method'];
+      if (!checkDefaultPaymentMethod) {
         await this.stripe.customers.update(user.customerId, {
           invoice_settings: {
             default_payment_method: payment.id,
