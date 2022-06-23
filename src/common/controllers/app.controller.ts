@@ -3,9 +3,9 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Public } from '../decorator/public.decorator';
 import { AppService } from '../services/app.service';
 
-@ApiTags('test')
+@ApiTags('/')
 @ApiBearerAuth()
-@Controller('/test')
+@Controller('/')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
