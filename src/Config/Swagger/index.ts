@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-export default function connectSwapger(app: INestApplication) {
+export default function connectSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
     .setTitle('Cats example')
     .setDescription('The cats API description')
