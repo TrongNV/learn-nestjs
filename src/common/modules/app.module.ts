@@ -22,7 +22,7 @@ import { StripeModule } from './stripe/stripe.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    MongooseModule.forRoot(process.env.DATABASE_MONGO),
     BullModule.forRoot({
       redis: {
         host: 'localhost',
